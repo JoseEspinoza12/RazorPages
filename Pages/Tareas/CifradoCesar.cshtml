@@ -1,0 +1,23 @@
+﻿@page
+@model MyApp.Namespace.CifradoCesarModel
+@{
+    ViewData["Title"] = "Cifrado César";
+}
+<h2>Cifrado César - Julio César</h2>
+
+<form method="post">
+    <label>Mensaje:</label><br />
+    <input type="text" name="Mensaje" value="@Model.Mensaje" style="width: 400px;" /><br /><br />
+
+    <label>Valor de n:</label><br />
+    <input type="number" name="N" value="@Model.N" /><br /><br />
+
+    <button type="submit" name="accion" value="codificar">Codificar</button>
+    <button type="submit" name="accion" value="decodificar">Decodificar</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model.Resultado))
+{
+    <h3>Resultado:</h3>
+    <p>@Model.Resultado</p>
+}

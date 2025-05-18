@@ -1,0 +1,73 @@
+﻿@page
+@model MyApp.Namespace.EvaluacionExpresionModel
+@{
+    ViewData["Title"] = "Evaluación de Expresión Binomial";
+}
+
+<div class="simple-container">
+    <h2 class="simple-title">Evaluar (ax + by)ⁿ</h2>
+
+    <form method="post" class="simple-form">
+        <div class="form-row">
+            <div class="form-group">
+                <label asp-for="A">a:</label>
+                <input asp-for="A" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label asp-for="B">b:</label>
+                <input asp-for="B" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label asp-for="X">x:</label>
+                <input asp-for="X" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label asp-for="Y">y:</label>
+                <input asp-for="Y" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label asp-for="N">n:</label>
+                <input asp-for="N" class="form-input" min="0" required>
+            </div>
+        </div>
+        <button type="submit" class="submit-btn">Calcular</button>
+    </form>
+
+    @if (Model.N >= 0)
+    {
+        <div class="results-section">
+            <h3 class="results-title">Resultados</h3>
+            
+            <div class="result-box">
+                <h4>Cálculo directo:</h4>
+                <p>(@(Model.A*Model.X) + @(Model.B*Model.Y))<sup>@Model.N</sup> = <strong>@Model.ResultadoDirecto</strong></p>
+            </div>
+
+            <div class="result-box">
+                <h4>Expansión binomial:</h4>
+                <p>Suma total: <strong>@Model.ResultadoExpansion</strong></p>
+            </div>
+
+            <div class="terms-section">
+                <h4>Términos:</h4>
+                <div class="terms-grid">
+                    @foreach (var termino in Model.Terminos)
+                    {
+                        <div class="term-card">
+                            <div class="term-header">k = @termino.K</div>
+                            <div class="term-content">
+                                <div>@termino.ExpresionTermino</div>
+                                <div class="term-value">= @termino.ValorTermino</div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

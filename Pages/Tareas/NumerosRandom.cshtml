@@ -1,0 +1,27 @@
+﻿@page
+@model MyApp.Namespace.NumerosRandomModel
+@{
+ViewData["Title"] = "Programa 4";
+}
+
+<h2>Programa 4</h2>
+
+<p><strong>Arreglo Aleatorio:</strong></p>
+<p>
+    @string.Join(", ", Model.Numeros)
+</p>
+
+<p><strong>Suma:</strong> @Model.Suma</p>
+<p><strong>Promedio:</strong> @Model.Promedio.ToString("F2")</p>
+
+<p><strong>Arreglo Ordenado:</strong></p>
+<p>
+    @string.Join(", ", Model.Ordenados)
+</p>
+
+<p><strong>Moda:</strong> @string.Join(" y ", Model.Moda)</p>
+<p><strong>Mediana:</strong> @Model.Mediana</p>
+
+<form method="post">
+    <button type="submit">Generar Nuevos Números</button>
+</form>

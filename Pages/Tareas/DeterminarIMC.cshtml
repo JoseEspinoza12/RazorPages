@@ -1,0 +1,36 @@
+﻿@page
+@model MyApp.Namespace.DeterminarIMCModel
+@{
+}
+
+<div class="simple-container">
+    <h2 class="simple-title">Calcular IMC</h2>
+
+    <form method="post" class="simple-form">
+        <div class="form-row">
+            <div class="form-group">
+                <label asp-for="Peso">Peso:</label>
+                <input asp-for="Peso" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label asp-for="Altura">Altura (cm):</label>
+                <input asp-for="Altura" class="form-input" required>
+            </div>
+        </div>
+        <button type="submit" class="submit-btn">Calcular</button>
+    </form>
+
+    @if (Model.Resultado != null)
+    {
+        <div class="imc-result">
+            <h3>Resultado: @Model.Resultado</h3>
+            <p>
+                <strong>IMC calculado:</strong> @Model.IMC?.ToString("0.00")
+            </p>
+            <img src="@Model.Imagen" alt="Imagen IMC" style="max-width:300px; margin:10px 0;" />
+            <p>
+                <strong>Recomendación:</strong> @Model.Recomendacion
+            </p>
+        </div>
+    }
+</div>
